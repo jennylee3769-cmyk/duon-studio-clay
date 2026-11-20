@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>두온 스튜디오 클레이 디자인 데모</title>
+<meta name="description" content="두온 스튜디오의 클레이모피즘 디자인 복제 데모. 집필·제본·표지·서재 기능을 로컬 브라우저에서 체험할 수 있습니다.">
+<meta name="author" content="두온교육(주)">
+<meta name="theme-color" content="#FBF9F4">
+<meta name="robots" content="noindex, nofollow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="두온 스튜디오">
+<meta property="og:title" content="두온 스튜디오 클레이 디자인 데모">
+<meta property="og:description" content="파스텔 색상과 말랑한 3D 스타일로 만든 두온 스튜디오 복제 데모.">
+<meta property="og:image" content="assets/clay-hero.png">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F6B54'/%3E%3Cpath d='M18 16h13a7 7 0 0 1 7 7v25a6 6 0 0 0-6-6H18z' fill='%23fff'/%3E%3Cpath d='M46 16H33a7 7 0 0 0-7 7v25a6 6 0 0 1 6-6h14z' fill='%23B08B3F'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/studio.css?v=20260823a">
+<link rel="stylesheet" href="assets/css/clay.css?v=2">
+</head>
+<body data-page="studio">
+<a class="skip" href="#main">본문 바로가기</a>
+
+<!-- ══════════ 헤더 ══════════ -->
+<header class="hdr">
+  <div class="hdr-in">
+    <a class="logo" href="#home" data-go="home">
+      <span class="logo-mark" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span>
+      두온<em>스튜디오</em><small>DUON</small>
+    </a>
+    <span class="demo-badge">디자인 데모</span>
+    <div class="hdr-right">
+      <span class="who" id="whoAmI"></span>
+      <button class="btn ghost sm" data-go="account" id="loginBtn">로그인</button>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ 탭 ══════════ -->
+<nav class="tabbar" aria-label="스튜디오 메뉴">
+  <div class="tabbar-in" id="tabbar" role="tablist">
+    <button role="tab" id="tab-home" aria-controls="pane-home" aria-selected="true"><i class="fa-solid fa-house" aria-hidden="true"></i>홈</button>
+    <span class="grp" aria-hidden="true"></span>
+    <button role="tab" id="tab-create" aria-controls="pane-create" aria-selected="false" tabindex="-1"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i>AI 집필실</button>
+    <button role="tab" id="tab-convert" aria-controls="pane-convert" aria-selected="false" tabindex="-1"><i class="fa-solid fa-book" aria-hidden="true"></i>원고 제본소</button>
+    <button role="tab" id="tab-cover" aria-controls="pane-cover" aria-selected="false" tabindex="-1"><i class="fa-solid fa-image" aria-hidden="true"></i>표지 스튜디오</button>
+    <button role="tab" id="tab-books" aria-controls="pane-books" aria-selected="false" tabindex="-1"><i class="fa-solid fa-book-bookmark" aria-hidden="true"></i>내 서재</button>
+    <span class="grp" aria-hidden="true"></span>
+    <button role="tab" class="media" id="tab-shorts" aria-controls="pane-shorts" aria-selected="false" tabindex="-1"><i class="fa-solid fa-film" aria-hidden="true"></i>숏폼</button>
+    <button role="tab" class="media" id="tab-audiobook" aria-controls="pane-audiobook" aria-selected="false" tabindex="-1"><i class="fa-solid fa-headphones" aria-hidden="true"></i>오디오북</button>
+    <span class="grp" aria-hidden="true"></span>
+    <button role="tab" id="tab-membership" aria-controls="pane-membership" aria-selected="false" tabindex="-1">멤버십</button>
+    <button role="tab" id="tab-event" aria-controls="pane-event" aria-selected="false" tabindex="-1">초대 이벤트</button>
+    <button role="tab" id="tab-notice" aria-controls="pane-notice" aria-selected="false" tabindex="-1">공지</button>
+    <button role="tab" id="tab-faq" aria-controls="pane-faq" aria-selected="false" tabindex="-1">FAQ</button>
+    <button role="tab" id="tab-account" aria-controls="pane-account" aria-selected="false" tabindex="-1"><i class="fa-regular fa-user" aria-hidden="true"></i>내 계정</button>
+  </div>
+</nav>
+
+<main id="main">
+<h1 class="sr">두온 스튜디오 - 통합 창작 스튜디오</h1>
+
+<!-- ══════════════════ 홈 ══════════════════ -->
+<section class="pane" id="pane-home" role="tabpanel" aria-labelledby="tab-home">
+  <div class="hero">
+    <div class="hero-intro">
+      <div class="hero-copy">
+        <span class="hero-kicker">CLAY DESIGN DEMO</span>
+    <h2>글이 <em>책</em>이 되고,<br>책이 <b>영상과 목소리</b>가 됩니다</h2>
+    <p class="lead">
+      한 줄의 아이디어에서 원고와 표지를 만들고, 완성한 책을 숏폼 영상과 오디오북으로 다시 꺼냅니다.
+      두온북 크리에이터의 집필 도구와 PDBOOK의 영상·낭독 도구를 한 화면에 모았습니다.
+    </p>
+    <div class="btns">
+      <button class="btn" data-go="create"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i>원고부터 쓰기</button>
+      <button class="btn ghost" data-go="shorts"><i class="fa-solid fa-film" aria-hidden="true"></i>숏폼부터 만들기</button>
+    </div>
+      </div>
+      <div class="hero-visual">
+        <img src="assets/clay-hero.png" alt="커다란 노트북에서 책, 영상, 목소리를 함께 만드는 찰흙 질감의 캐릭터들" width="1672" height="941">
+      </div>
+    </div>
+
+    <div class="tiles">
+      <button class="tile" data-go="create">
+        <i class="fa-solid fa-pen-nib" aria-hidden="true"></i>
+        <h3>AI 집필실</h3>
+        <p>주제와 장르만 정하면 목차와 표지를 갖춘 책의 뼈대가 나옵니다. 본문은 제본소에서 채웁니다.</p>
+      </button>
+      <button class="tile" data-go="convert">
+        <i class="fa-solid fa-book" aria-hidden="true"></i>
+        <h3>원고 제본소</h3>
+        <p>써 둔 원고에 표제지와 판권지를 붙여 한 권의 형태로 조판합니다.</p>
+      </button>
+      <button class="tile" data-go="cover">
+        <i class="fa-solid fa-image" aria-hidden="true"></i>
+        <h3>표지 스튜디오</h3>
+        <p>아홉 가지 표지 스타일과 띠지. 추천 문구까지 자동으로 채워 줍니다.</p>
+      </button>
+      <button class="tile rec" data-go="shorts">
+        <i class="fa-solid fa-film" aria-hidden="true"></i>
+        <h3>숏폼 스튜디오</h3>
+        <p>글을 세로 영상으로. 자막은 합성 음성의 실제 발화 시각을 그대로 써서 밀리지 않습니다.</p>
+      </button>
+      <button class="tile rec" data-go="audiobook">
+        <i class="fa-solid fa-headphones" aria-hidden="true"></i>
+        <h3>오디오북 스튜디오</h3>
+        <p>전자책을 챕터별로 나눠 읽고, 목차가 박힌 합본까지 만듭니다.</p>
+      </button>
+      <button class="tile" data-go="books">
+        <i class="fa-solid fa-book-bookmark" aria-hidden="true"></i>
+        <h3>내 서재</h3>
+        <p>만든 원고와 표지 시안이 이곳에 쌓입니다. 언제든 다시 꺼내 이어서 작업하세요.</p>
+      </button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>9종</b><span>표지 스타일</span></div>
+      <div class="stat"><b>9종</b><span>장르 프리셋</span></div>
+      <div class="stat"><b>6종</b><span>영상 연출</span></div>
+      <div class="stat"><b>8종</b><span>한국어 음성</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ AI 집필실 ══════════════════ -->
+<section class="pane" id="pane-create" role="tabpanel" aria-labelledby="tab-create" hidden>
+  <div class="head">
+    <span class="eyebrow">STUDIO 01</span>
+    <h2>AI 집필실</h2>
+    <p class="lead">주제와 장르를 정하면 목차를 잡고 표지와 서지 정보를 갖춘 한 권을 만들어 서재에 넣습니다.</p>
+  </div>
+
+  <div class="notice">
+    집필실은 <strong>목차와 책의 뼈대</strong>를 만들어 줍니다. 본문은 제본소에서 직접 쓰신 원고를 넣어 완성하세요.
+  </div>
+
+  <div class="grid2 wide-left">
+    <form class="card" id="createForm">
+      <h3 class="card-h"><i class="fa-solid fa-sliders" aria-hidden="true"></i>집필 설정</h3>
+
+      <div class="field">
+        <label for="cTitle">책 제목</label>
+        <input type="text" id="cTitle" placeholder="예) 하루 10분, 나를 바꾸는 기록" maxlength="60" required>
+      </div>
+
+      <div class="field">
+        <label for="cKeywords">키워드 · 핵심 메시지</label>
+        <textarea id="cKeywords" placeholder="예) 기록, 습관, 자기이해&#10;쉼표나 줄바꿈으로 나눠 적어 주세요" maxlength="6000"></textarea>
+        <p class="hint">첫 번째 키워드가 목차와 추천 문구의 중심이 됩니다. <span id="cKwCount">0 / 6,000자</span></p>
+      </div>
+
+      <div class="row">
+        <div class="field"><label for="cGenre">장르</label><select id="cGenre" required></select></div>
+        <div class="field">
+          <label for="cTone">문체</label>
+          <select id="cTone">
+            <option value="보통 설명체">보통 설명체 (-다)</option>
+            <option value="부드러운 경어체" selected>부드러운 경어체 (-요)</option>
+            <option value="문학적 서술체">문학적 서술체</option>
+            <option value="친근한 대화체">친근한 대화체</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="cChapters">챕터 수 <span id="cChapLabel" style="color:var(--emerald)">8챕터</span></label>
+          <input type="range" id="cChapters" min="3" max="20" step="1" value="8">
+        </div>
+        <div class="field">
+          <label for="cLength">원고 분량</label>
+          <select id="cLength"><option value="간결">간결</option><option value="보통" selected>보통</option><option value="풍부">풍부</option></select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="check"><input type="checkbox" id="cTocCustom"><span>목차를 직접 설계합니다</span></label>
+        <div id="cTocTools" hidden style="margin-top:12px">
+          <button type="button" class="btn ghost sm" id="cTocAI"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>AI 목차 초안 채우기</button>
+        </div>
+        <div id="cTocList" hidden style="margin-top:12px;display:grid;gap:8px"></div>
+      </div>
+
+      <div class="field">
+        <label id="cStyleLabel">표지 스타일</label>
+        <div class="cover-styles" role="radiogroup" aria-labelledby="cStyleLabel" id="cStyles"></div>
+      </div>
+
+      <div class="row">
+        <div class="field"><label for="cAuthor">작가 이름</label><input type="text" id="cAuthor" maxlength="24" required></div>
+        <div class="field"><label for="cPub">출판사명</label><input type="text" id="cPub" maxlength="24" placeholder="두온북" required></div>
+      </div>
+      <div class="row3">
+        <div class="field"><label for="cIsbn">ISBN</label><input type="text" id="cIsbn" maxlength="20" placeholder="선택"></div>
+        <div class="field"><label for="cDate">발행일</label><input type="date" id="cDate"></div>
+        <div class="field"><label for="cPrice">정가 (원)</label><input type="number" id="cPrice" min="0" step="100" placeholder="15000" required></div>
+      </div>
+
+      <div class="btns">
+        <button type="submit" class="btn"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>제작하기</button>
+        <button type="button" class="btn ghost" id="cReset">비우기</button>
+      </div>
+    </form>
+
+    <div class="card">
+      <h3 class="card-h"><i class="fa-solid fa-eye" aria-hidden="true"></i>미리보기</h3>
+      <div class="cov-wrap" id="cPreview"></div>
+      <div class="out" id="cTocOut" style="margin-top:18px;max-height:300px"><span style="color:var(--ink-3)">목차가 여기에 표시됩니다</span></div>
+      <div class="btns" id="cActions" hidden style="margin-top:16px">
+        <button class="btn ghost sm" id="cCopy"><i class="fa-regular fa-copy" aria-hidden="true"></i>목차 복사</button>
+        <button class="btn rec sm" id="cToShorts"><i class="fa-solid fa-film" aria-hidden="true"></i>숏폼으로 보내기</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 원고 제본소 ══════════════════ -->
+<section class="pane" id="pane-convert" role="tabpanel" aria-labelledby="tab-convert" hidden>
+  <div class="head">
+    <span class="eyebrow">STUDIO 02</span>
+    <h2>원고 제본소</h2>
+    <p class="lead">써 둔 원고에 표제지와 판권지를 붙여 한 권의 형태로 조판합니다. 인쇄하거나 파일로 내려받을 수 있습니다.</p>
+  </div>
+
+  <div class="grid2 wide-left">
+    <form class="card" id="convertForm">
+      <h3 class="card-h"><i class="fa-solid fa-align-left" aria-hidden="true"></i>원고와 판권</h3>
+
+      <div class="field">
+        <label for="vBody">원고 본문</label>
+        <textarea id="vBody" style="min-height:220px" placeholder="원고를 붙여 넣으세요.&#10;&#10;## 로 시작하는 줄은 장 제목으로 봅니다."></textarea>
+        <p class="hint">집필실에서 만든 초안은 <button type="button" class="btn ghost sm" id="vFromCreate">불러오기</button> 로 가져올 수 있습니다.</p>
+      </div>
+
+      <div class="row">
+        <div class="field"><label for="vTitle">책 제목</label><input type="text" id="vTitle" maxlength="60"></div>
+        <div class="field"><label for="vAuthor">작가 이름</label><input type="text" id="vAuthor" maxlength="30"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="vPub">출판사명</label><input type="text" id="vPub" maxlength="30" placeholder="두온북"></div>
+        <div class="field"><label for="vGenre">장르</label><select id="vGenre"></select></div>
+      </div>
+      <div class="row3">
+        <div class="field"><label for="vIsbn">ISBN</label><input type="text" id="vIsbn" maxlength="20" placeholder="선택"></div>
+        <div class="field"><label for="vDate">발행일</label><input type="date" id="vDate"></div>
+        <div class="field"><label for="vPrice">정가 (원)</label><input type="number" id="vPrice" min="0" step="100" placeholder="15000"></div>
+      </div>
+      <div class="field">
+        <label class="check"><input type="checkbox" id="vToc" checked><span>목차 페이지를 넣습니다</span></label>
+      </div>
+
+      <div class="btns">
+        <button type="submit" class="btn"><i class="fa-solid fa-book" aria-hidden="true"></i>제본하기</button>
+      </div>
+    </form>
+
+    <div class="card">
+      <h3 class="card-h"><i class="fa-solid fa-book-open" aria-hidden="true"></i>제본 결과</h3>
+      <div id="vOut"><div class="empty">원고를 넣고 제본하기를 눌러 주세요</div></div>
+      <div class="btns" id="vActions" hidden style="margin-top:16px">
+        <button class="btn ghost sm" id="vPrint"><i class="fa-solid fa-print" aria-hidden="true"></i>인쇄 · PDF 저장</button>
+        <button class="btn ghost sm" id="vCopy"><i class="fa-regular fa-copy" aria-hidden="true"></i>전체 복사</button>
+        <button class="btn ghost sm" id="vDownload"><i class="fa-solid fa-download" aria-hidden="true"></i>txt 내려받기</button>
+        <button class="btn sm" id="vSave"><i class="fa-solid fa-book-bookmark" aria-hidden="true"></i>서재에 담기</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 표지 스튜디오 ══════════════════ -->
+<section class="pane" id="pane-cover" role="tabpanel" aria-labelledby="tab-cover" hidden>
+  <div class="head">
+    <span class="eyebrow">STUDIO 03</span>
+    <h2>표지 스튜디오</h2>
+    <p class="lead">스타일을 고르면 그 스타일에 필요한 칸만 나타납니다. 추천 문구 버튼을 누르면 장르에 맞는 문장을 채워 줍니다.</p>
+  </div>
+
+  <div class="grid2">
+    <form class="card" id="coverForm">
+      <h3 class="card-h"><i class="fa-solid fa-swatchbook" aria-hidden="true"></i>표지 설정</h3>
+
+      <div class="field">
+        <label id="kStyleLabel">표지 스타일</label>
+        <div class="cover-styles" role="radiogroup" aria-labelledby="kStyleLabel" id="kStyles"></div>
+      </div>
+
+      <div class="row">
+        <div class="field"><label for="kTitle">책 제목</label><input type="text" id="kTitle" maxlength="40" placeholder="제목을 적어 주세요"></div>
+        <div class="field"><label for="kGenre">장르</label><select id="kGenre"></select></div>
+      </div>
+      <div class="field">
+        <label for="kKeywords">키워드</label>
+        <input type="text" id="kKeywords" maxlength="60" placeholder="추천 문구를 만들 때 씁니다">
+      </div>
+      <div class="row">
+        <div class="field"><label for="kAuthor">작가 이름</label><input type="text" id="kAuthor" maxlength="24"></div>
+        <div class="field"><label for="kPub">출판사명</label><input type="text" id="kPub" maxlength="24" placeholder="두온북"></div>
+      </div>
+
+      <div id="kDynamic"></div>
+
+      <div class="btns">
+        <button type="button" class="btn gold" id="kAuto"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>추천 문구 채우기</button>
+        <button type="button" class="btn" id="kSave"><i class="fa-solid fa-bookmark" aria-hidden="true"></i>시안 저장</button>
+      </div>
+    </form>
+
+    <div class="card">
+      <h3 class="card-h"><i class="fa-solid fa-eye" aria-hidden="true"></i>미리보기</h3>
+      <div class="cov-wrap" id="kPreview"></div>
+      <p class="hint" style="text-align:center;margin-top:14px">화면에 보이는 그대로 시안으로 저장됩니다</p>
+      <div id="kSaved"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 내 서재 ══════════════════ -->
+<section class="pane" id="pane-books" role="tabpanel" aria-labelledby="tab-books" hidden>
+  <div class="head">
+    <span class="eyebrow">LIBRARY</span>
+    <h2>내 서재</h2>
+    <p class="lead">만든 원고와 표지 시안이 이 브라우저에 저장됩니다. 서버에 올라가지 않으니 기기를 바꾸면 따라오지 않습니다.</p>
+  </div>
+  <div class="card">
+    <h3 class="card-h"><i class="fa-solid fa-book-bookmark" aria-hidden="true"></i>보관한 책</h3>
+    <div id="bShelf"></div>
+  </div>
+  <div class="card">
+    <h3 class="card-h"><i class="fa-solid fa-image" aria-hidden="true"></i>표지 시안</h3>
+    <div id="bCovers"></div>
+  </div>
+</section>
+
+<!-- ══════════════════ 숏폼 ══════════════════ -->
+<section class="pane" id="pane-shorts" role="tabpanel" aria-labelledby="tab-shorts" hidden>
+  <div class="head">
+    <span class="eyebrow rec">STUDIO 04</span>
+    <h2>숏폼 스튜디오</h2>
+    <p class="lead">글을 9:16 세로 영상으로 바꿉니다. 자막은 합성 음성의 실제 발화 시각을 그대로 써서 밀리지 않습니다.</p>
+  </div>
+
+  <div class="deck">
+    <div class="link-state wait" id="mState">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="mStateText">로컬 스튜디오를 찾는 중입니다</span>
+      <button class="btn ghost sm" id="mRetry" hidden>다시 확인</button>
+    </div>
+
+    <div class="grid2 wide-left">
+      <form class="card" id="shortsForm">
+        <h3 class="card-h"><i class="fa-solid fa-align-left" aria-hidden="true"></i>소스 입력</h3>
+        <div class="field">
+          <label for="sText">본문 텍스트</label>
+          <textarea id="sText" style="min-height:150px" placeholder="영상으로 만들 글을 붙여 넣으세요. 첫 줄이 짧으면 제목으로 씁니다."></textarea>
+        </div>
+        <div class="field">
+          <label for="sUrl">블로그 URL</label>
+          <input type="url" id="sUrl" placeholder="https://blog.naver.com/아이디/글번호">
+        </div>
+        <div class="field">
+          <label>문서 파일</label>
+          <label class="drop" id="sDrop">
+            <strong>DOCX · PPTX · PDF · TXT</strong>
+            클릭하거나 파일을 끌어다 놓으세요
+            <input type="file" id="sFile" accept=".docx,.pptx,.pdf,.txt,.md">
+          </label>
+          <div id="sFileInfo" style="margin-top:10px"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="sTemplate">연출</label><select id="sTemplate"><option value="auto">자동 (주제에 맞춰 선택)</option></select></div>
+          <div class="field"><label for="sVoice">음성</label><select id="sVoice"></select></div>
+        </div>
+        <div class="field">
+          <label for="sSeconds">목표 길이 <span id="sSecLabel" style="color:var(--meter)">25초</span></label>
+          <input type="range" id="sSeconds" min="10" max="90" step="5" value="25">
+        </div>
+        <div class="field">
+          <label class="check"><input type="checkbox" id="sWide"><span>가로 16:9 버전도 함께 만들기</span></label>
+        </div>
+        <button type="submit" class="btn rec full" id="sSubmit" disabled><span id="sSubmitLabel">로컬 스튜디오 연결이 필요합니다</span></button>
+      </form>
+
+      <div class="card">
+        <h3 class="card-h"><i class="fa-solid fa-clapperboard" aria-hidden="true"></i>결과</h3>
+        <p class="hint" id="sStatus" role="status" aria-live="polite" style="margin:0 0 10px">대기 중입니다</p>
+        <div class="bar"><i id="sBar"></i></div>
+        <p class="pct" id="sPct">0%</p>
+        <div id="sResult"><div class="empty">아직 만든 영상이 없습니다</div></div>
+        <div id="sErr"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 오디오북 ══════════════════ -->
+<section class="pane" id="pane-audiobook" role="tabpanel" aria-labelledby="tab-audiobook" hidden>
+  <div class="head">
+    <span class="eyebrow rec">STUDIO 05</span>
+    <h2>오디오북 스튜디오</h2>
+    <p class="lead">전자책을 챕터별로 나눠 읽고, 목차가 박힌 합본까지 만듭니다.</p>
+  </div>
+
+  <div class="deck">
+    <div class="link-state wait" id="aState">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="aStateText">로컬 스튜디오를 찾는 중입니다</span>
+      <button class="btn ghost sm" id="aRetry" hidden>다시 확인</button>
+    </div>
+
+    <div class="grid2 wide-left">
+      <form class="card" id="bookForm">
+        <h3 class="card-h"><i class="fa-solid fa-file-import" aria-hidden="true"></i>원고 업로드</h3>
+        <div class="field">
+          <label>EPUB 파일</label>
+          <label class="drop" id="aDrop">
+            <strong>EPUB</strong>
+            목차가 있는 전자책이면 챕터별로 나눠 읽습니다
+            <input type="file" id="aFile" accept=".epub">
+          </label>
+          <div id="aFileInfo" style="margin-top:10px"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="aVoice">낭독 음성</label><select id="aVoice"></select></div>
+          <div class="field"><label for="aMax">낭독할 챕터 수</label><input type="number" id="aMax" min="1" max="200" placeholder="비우면 전권"></div>
+        </div>
+        <button type="submit" class="btn rec full" id="aSubmit" disabled><span id="aSubmitLabel">로컬 스튜디오 연결이 필요합니다</span></button>
+      </form>
+
+      <div class="card">
+        <h3 class="card-h"><i class="fa-solid fa-headphones" aria-hidden="true"></i>결과</h3>
+        <p class="hint" id="aStatus" role="status" aria-live="polite" style="margin:0 0 10px">대기 중입니다</p>
+        <div class="bar"><i id="aBar"></i></div>
+        <p class="pct" id="aPct">0%</p>
+        <div id="aResult"></div>
+        <div id="aErr"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 멤버십 ══════════════════ -->
+<section class="pane" id="pane-membership" role="tabpanel" aria-labelledby="tab-membership" hidden>
+  <div class="head">
+    <span class="eyebrow">PLAN</span>
+    <h2>필요한 만큼만, 투명하게</h2>
+    <p class="lead">집필 도구는 무료로 열려 있습니다. 영상과 낭독처럼 서버 자원이 드는 작업만 분 단위로 셉니다.</p>
+  </div>
+  <div class="notice">
+    <strong>정식 오픈 준비 중입니다.</strong> 아래 금액은 확정 전 안내가이며, 지금은 결제 대신 사전 신청으로 연결됩니다.
+  </div>
+  <div class="notice">로컬 복제본의 멤버십 정보는 원 사이트에서 관찰한 화면 예시입니다. 결제와 혜택 적용은 연결되어 있지 않습니다.</div>
+  <div class="plans">
+    <article class="plan">
+      <span class="nm">Free</span>
+      <div class="price">0<small>원</small></div>
+      <ul>
+        <li>AI 집필실 · 제본소 · 표지 스튜디오 전부</li>
+        <li>내 서재 보관</li>
+        <li>숏폼 체험 3편</li>
+        <li>결과물에 두온 표식</li>
+      </ul>
+      <button class="btn ghost full" data-go="account">가입하고 시작</button>
+    </article>
+    <article class="plan hot">
+      <span class="nm">Creator</span>
+      <div class="price">19,900<small>원 / 월</small></div>
+      <ul>
+        <li>Free의 모든 기능</li>
+        <li>영상 30분 (숏폼 약 30편)</li>
+        <li>낭독 60분</li>
+        <li>표식 제거 · 상업적 이용</li>
+      </ul>
+      <a class="btn gold full" href="https://open.kakao.com/o/gpLP613g" target="_blank" rel="noopener">사전 신청</a>
+    </article>
+    <article class="plan">
+      <span class="nm">Studio</span>
+      <div class="price">49,900<small>원 / 월</small></div>
+      <ul>
+        <li>Creator의 모든 기능</li>
+        <li>영상 120분 · 낭독 300분</li>
+        <li>오토파일럿 블로그 3개</li>
+        <li>감정 낭독 · 다화자 캐스팅</li>
+        <li>우선 처리 대기열</li>
+      </ul>
+      <a class="btn ghost full" href="https://open.kakao.com/o/gpLP613g" target="_blank" rel="noopener">사전 신청</a>
+    </article>
+    <article class="plan">
+      <span class="nm">기관 · 출판사</span>
+      <div class="price">문의</div>
+      <ul>
+        <li>영상 · 낭독 분량 협의</li>
+        <li>오토파일럿 무제한</li>
+        <li>팀 계정 · 브랜드 템플릿</li>
+        <li>전담 상담 채널</li>
+      </ul>
+      <a class="btn ghost full" href="mailto:duonedu@duonedu.net?subject=%EB%91%90%EC%98%A8%20%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4%20%EA%B8%B0%EA%B4%80%20%EB%AC%B8%EC%9D%98">문의하기</a>
+    </article>
+  </div>
+  <p class="hint" style="margin-top:18px">
+    남은 분량은 다음 달로 한 달까지 이월됩니다. 유료 플랜에서 만든 결과물의 권리는 전부 고객에게 있습니다.
+    언제든 해지할 수 있고 위약금은 없습니다. 자세한 내용은 <a href="refund.html">환불규정</a>을 확인해 주세요.
+  </p>
+</section>
+
+<!-- ══════════════════ 초대 이벤트 ══════════════════ -->
+<section class="pane" id="pane-event" role="tabpanel" aria-labelledby="tab-event" hidden>
+  <div class="head">
+    <span class="eyebrow">EVENT</span>
+    <h2>친구 초대 이벤트</h2>
+    <p class="lead">초대 링크로 친구가 가입하면 두 분 모두에게 영상 10분을 드립니다.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3 class="card-h"><i class="fa-solid fa-gift" aria-hidden="true"></i>내 초대 코드</h3>
+      <div class="field">
+        <label for="evCode">초대 코드</label>
+        <input type="text" id="evCode" readonly>
+      </div>
+      <div class="field">
+        <label for="evLink">초대 링크</label>
+        <input type="text" id="evLink" readonly>
+      </div>
+      <div class="btns">
+        <button class="btn" id="evCopy"><i class="fa-regular fa-copy" aria-hidden="true"></i>링크 복사</button>
+        <button class="btn ghost" id="evNew">코드 새로 만들기</button>
+      </div>
+      <p class="hint">코드는 이 브라우저에 저장됩니다. 정산은 정식 오픈 시점에 계정 기준으로 이뤄집니다.</p>
+    </div>
+    <div class="card">
+      <h3 class="card-h"><i class="fa-solid fa-list-check" aria-hidden="true"></i>참여 방법</h3>
+      <ol style="padding-left:20px;margin:0;color:var(--ink-2);font-size:14.5px;line-height:2">
+        <li>초대 링크를 복사해 친구에게 보냅니다.</li>
+        <li>친구가 그 링크로 들어와 가입합니다.</li>
+        <li>가입이 확인되면 두 분 모두에게 영상 10분이 쌓입니다.</li>
+      </ol>
+      <div class="notice" style="margin:18px 0 0">
+        정식 오픈 전에는 적립만 기록되고 사용은 오픈 후부터 가능합니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 공지 ══════════════════ -->
+<section class="pane" id="pane-notice" role="tabpanel" aria-labelledby="tab-notice" hidden>
+  <div class="head">
+    <span class="eyebrow">NOTICE</span>
+    <h2>공지사항</h2>
+  </div>
+  <div class="card"><div id="noticeList"><div class="empty">불러오는 중입니다</div></div></div>
+</section>
+
+<!-- ══════════════════ FAQ ══════════════════ -->
+<section class="pane" id="pane-faq" role="tabpanel" aria-labelledby="tab-faq" hidden>
+  <div class="head">
+    <span class="eyebrow">FAQ</span>
+    <h2>자주 묻는 질문</h2>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <details><summary>정말 무료인가요?</summary><p>집필실, 제본소, 표지 스튜디오, 내 서재는 무료로 쓰실 수 있습니다. 영상과 낭독은 서버에서 계산이 돌아가는 작업이라 분 단위로 셉니다.</p></details>
+      <details><summary>만든 원고의 저작권은 누구에게 있나요?</summary><p>이용자에게 있습니다. 두온은 결과물에 대한 권리를 주장하지 않습니다. 다만 넣으시는 원문이 타인의 저작물이면 그에 대한 책임은 이용자에게 있습니다.</p></details>
+      <details><summary>서재의 책은 어디에 저장되나요?</summary><p>브라우저 안에만 저장됩니다. 서버로 올라가지 않아 안전하지만, 기기를 바꾸거나 브라우저 자료를 지우면 사라집니다. 중요한 원고는 txt로 내려받아 보관해 주세요.</p></details>
+      <details><summary>AI가 쓴 원고를 그대로 출간해도 되나요?</summary><p>초안은 뼈대입니다. 사실 확인과 문장 다듬기를 거쳐 본인의 글로 만드신 뒤 출간하시길 권합니다.</p></details>
+    </div>
+    <div class="card">
+      <details><summary>숏폼과 오디오북 탭이 잠겨 있어요</summary><p>영상과 음성 작업은 내 컴퓨터의 로컬 스튜디오에서 처리합니다. 스튜디오를 실행하면 탭이 자동으로 열립니다. 실행 방법은 숏폼 탭 상단 안내를 참고해 주세요.</p></details>
+      <details><summary>왜 영상은 서버에서 안 만드나요?</summary><p>영상 렌더링은 브라우저 엔진과 인코더를 함께 돌려야 해서 일반 웹호스팅에서는 동작하지 않습니다. 지금은 각자의 컴퓨터에서 처리하고, 서버 배포는 준비 중입니다.</p></details>
+      <details><summary>자막이 밀리지 않는다는 게 무슨 뜻인가요?</summary><p>음성을 합성할 때 단어마다 언제 발음이 시작되고 끝나는지가 함께 나옵니다. 그 값을 그대로 자막에 씁니다. 소리를 다시 듣고 추정하는 방식이 아니라서 원리상 어긋나지 않습니다.</p></details>
+      <details><summary>탈퇴하면 자료는 어떻게 되나요?</summary><p>계정 정보는 즉시 지워집니다. 서재는 브라우저에 있으므로 직접 지우셔야 합니다.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 내 계정 ══════════════════ -->
+<section class="pane" id="pane-account" role="tabpanel" aria-labelledby="tab-account" hidden>
+  <div class="head">
+    <span class="eyebrow">ACCOUNT</span>
+    <h2 id="acTitle">내 계정</h2>
+    <p class="lead" id="acLead">가입하시면 공지와 문의 내역을 계정으로 관리하실 수 있습니다.</p>
+  </div>
+
+  <div class="notice">로컬 복제본입니다. 계정 가입, 로그인, 문의 전송은 서버가 연결되어 있지 않아 사용할 수 없습니다.</div>
+
+  <div class="grid2">
+    <!-- 비로그인 -->
+    <div id="acGuest">
+      <div class="card">
+        <h3 class="card-h"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>로그인</h3>
+        <form id="loginForm">
+          <div class="field"><label for="liEmail">이메일</label><input type="email" id="liEmail" autocomplete="email" required></div>
+          <div class="field"><label for="liPw">비밀번호</label><input type="password" id="liPw" autocomplete="current-password" required></div>
+          <button type="submit" class="btn full">로그인</button>
+        </form>
+        <div id="liMsg"></div>
+      </div>
+      <div class="card">
+        <h3 class="card-h"><i class="fa-solid fa-user-plus" aria-hidden="true"></i>가입하기</h3>
+        <form id="signupForm">
+          <div class="field"><label for="suName">이름</label><input type="text" id="suName" maxlength="20" autocomplete="name" required></div>
+          <div class="field"><label for="suEmail">이메일</label><input type="email" id="suEmail" autocomplete="email" required></div>
+          <div class="field"><label for="suPw">비밀번호</label><input type="password" id="suPw" minlength="8" autocomplete="new-password" required><p class="hint">8자 이상</p></div>
+          <div class="field"><label class="check"><input type="checkbox" id="suAgree" required><span>이용약관과 개인정보처리방침에 동의합니다</span></label></div>
+          <button type="submit" class="btn gold full">가입하기</button>
+        </form>
+        <div id="suMsg"></div>
+      </div>
+    </div>
+
+    <!-- 로그인 후 -->
+    <div id="acUser" hidden>
+      <div class="card">
+        <h3 class="card-h"><i class="fa-regular fa-user" aria-hidden="true"></i>내 정보</h3>
+        <form id="profileForm">
+          <div class="field"><label for="pfName">이름</label><input type="text" id="pfName" maxlength="20"></div>
+          <div class="field"><label for="pfEmail">이메일</label><input type="email" id="pfEmail" readonly></div>
+          <div class="btns">
+            <button type="submit" class="btn">이름 저장</button>
+            <button type="button" class="btn ghost" id="logoutBtn">로그아웃</button>
+          </div>
+        </form>
+        <div id="pfMsg"></div>
+      </div>
+      <div class="card">
+        <h3 class="card-h"><i class="fa-solid fa-key" aria-hidden="true"></i>비밀번호 변경</h3>
+        <form id="pwForm">
+          <div class="field"><label for="pwCur">현재 비밀번호</label><input type="password" id="pwCur" autocomplete="current-password" required></div>
+          <div class="field"><label for="pwNew">새 비밀번호</label><input type="password" id="pwNew" minlength="8" autocomplete="new-password" required><p class="hint">8자 이상</p></div>
+          <div class="field"><label for="pwNew2">새 비밀번호 확인</label><input type="password" id="pwNew2" minlength="8" autocomplete="new-password" required></div>
+          <button type="submit" class="btn">비밀번호 변경</button>
+        </form>
+        <div id="pwMsg"></div>
+      </div>
+      <div class="card">
+        <h3 class="card-h"><i class="fa-solid fa-user-slash" aria-hidden="true"></i>회원 탈퇴</h3>
+        <p class="hint" style="margin-top:0">탈퇴하면 계정 정보가 지워집니다. 서재는 이 브라우저에 남으니 필요하면 따로 지워 주세요.</p>
+        <button class="btn ghost" id="withdrawBtn">탈퇴하기</button>
+      </div>
+    </div>
+
+    <!-- 문의 -->
+    <div class="card">
+      <h3 class="card-h"><i class="fa-regular fa-comment-dots" aria-hidden="true"></i>문의하기</h3>
+      <form id="inquiryForm">
+        <div class="row">
+          <div class="field"><label for="inName">이름</label><input type="text" id="inName" maxlength="20" required></div>
+          <div class="field"><label for="inContact">답변받을 이메일</label><input type="email" id="inContact" maxlength="60" autocomplete="email" required></div>
+        </div>
+        <div class="field"><label for="inMsg">문의 내용</label><textarea id="inMsg" maxlength="1000" required></textarea></div>
+        <button type="submit" class="btn full">보내기</button>
+      </form>
+      <div id="inResult"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════ 푸터 ══════════ -->
+<footer class="site-foot">
+  <div class="site-foot-in">
+    <div><h4>만들기</h4>
+      <a href="#create" data-go="create">AI 집필실</a>
+      <a href="#convert" data-go="convert">원고 제본소</a>
+      <a href="#cover" data-go="cover">표지 스튜디오</a></div>
+    <div><h4>영상 · 낭독</h4>
+      <a href="#shorts" data-go="shorts">숏폼 스튜디오</a>
+      <a href="#audiobook" data-go="audiobook">오디오북 스튜디오</a></div>
+    <div><h4>서비스</h4>
+      <a href="#books" data-go="books">내 서재</a>
+      <a href="#membership" data-go="membership">멤버십 안내</a>
+      <a href="#event" data-go="event">친구 초대 이벤트</a></div>
+    <div><h4>고객지원</h4>
+      <a href="#notice" data-go="notice">공지사항</a>
+      <a href="#faq" data-go="faq">자주 묻는 질문</a>
+      <a href="terms.html">이용약관</a>
+      <a href="privacy.html">개인정보처리방침</a></div>
+  </div>
+</footer>
+
+<footer class="duon-footer">
+  <div class="duon-footer-inner">
+    <div class="duon-footer-brand">
+      <span>개발사: <a href="https://lab.duonedu.net" target="_blank" rel="noopener">미래이음연구소</a></span>
+      <span class="duon-footer-sep" aria-hidden="true">·</span>
+      <span>운영사: <a href="https://main.duonedu.net" target="_blank" rel="noopener">두온교육(주)</a></span>
+    </div>
+    <div class="duon-footer-info">
+      <span><a href="tel:07050895960">Tel: 070-5089-5960</a></span>
+      <span><a href="tel:01033434000">Mobile: 010-3343-4000</a></span>
+      <span>사업자: 264-87-01676</span>
+      <span>통신판매: 2020-경기평택-0204</span>
+      <span><a href="mailto:duonedu@duonedu.net">duonedu@duonedu.net</a></span>
+      <span>경기도 평택시 고덕중앙로 322 704호</span>
+    </div>
+    <div class="duon-footer-bank">무통장 입금 <strong>1005-903-896511 우리은행</strong> · 예금주: 두온교육(주)</div>
+    <div class="duon-footer-links">
+      <a href="privacy.html">개인정보처리방침</a>
+      <span class="duon-footer-sep" aria-hidden="true">·</span>
+      <a href="terms.html">이용약관</a>
+      <span class="duon-footer-sep" aria-hidden="true">·</span>
+      <a href="refund.html">환불규정</a>
+    </div>
+    <div class="duon-footer-social">
+      <a href="https://www.youtube.com/@mintorain7" target="_blank" rel="noopener" title="유튜브"><i class="fa-brands fa-youtube" aria-hidden="true"></i><span class="sr">유튜브</span></a>
+      <a href="https://www.instagram.com/mintorain/" target="_blank" rel="noopener" title="인스타그램"><i class="fa-brands fa-instagram" aria-hidden="true"></i><span class="sr">인스타그램</span></a>
+      <a href="https://www.facebook.com/mintorain" target="_blank" rel="noopener" title="페이스북"><i class="fa-brands fa-facebook" aria-hidden="true"></i><span class="sr">페이스북</span></a>
+      <a href="https://x.com/mintorain7" target="_blank" rel="noopener" title="X (트위터)"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i><span class="sr">X</span></a>
+      <a href="https://open.kakao.com/o/gpLP613g" target="_blank" rel="noopener" title="카카오톡 오픈채팅"><i class="fa-solid fa-comment" aria-hidden="true"></i><span class="sr">카카오톡 오픈채팅</span></a>
+      <a href="http://pf.kakao.com/_UzjZG/chat" target="_blank" rel="noopener" title="고객센터"><i class="fa-solid fa-headset" aria-hidden="true"></i><span class="sr">고객센터</span></a>
+    </div>
+    <div class="duon-footer-copy">© 2026 두온교육(주) · 미래이음연구소 · 개발: 이신우</div>
+  </div>
+</footer>
+
+<script src="assets/js/core.js?v=20260823a"></script>
+<script src="assets/js/studio.js?v=20260823a"></script>
+<script src="assets/js/book.js?v=20260823a"></script>
+<script src="assets/js/media.js?v=20260823a"></script>
+<script src="assets/js/account.js?v=20260823a"></script>
+</body>
+</html>
