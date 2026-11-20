@@ -2,6 +2,13 @@
 
 2026-11-20에 만든 로컬 클론 v1에 클레이모피즘 디자인을 입힌 별도 버전입니다. 원본 캡처는 상위 폴더의 `reference_capture/`, 이전 클론은 `duon_studio_clone_v1/`에 보존했습니다.
 
+## 공개 배포
+
+- 사이트: https://duon-studio-clay.vercel.app/
+- GitHub: https://github.com/jennylee3769-cmyk/duon-studio-clay
+- Vercel 프로젝트는 위 GitHub 저장소에 연결되어 있습니다.
+- 이 사이트는 복제 디자인 데모이며 비공개 계정 서버와 영상 렌더 서버는 포함하지 않습니다.
+
 ## 실행
 
 PowerShell에서 이 폴더로 이동한 뒤:
